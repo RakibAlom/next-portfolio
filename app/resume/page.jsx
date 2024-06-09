@@ -44,7 +44,7 @@ const about = {
     },
     {
       fieldName: "Language",
-      fieldValue: "English, Bangla, Hindi, Urdhu",
+      fieldValue: "English, Bangla",
     },
   ],
 };
