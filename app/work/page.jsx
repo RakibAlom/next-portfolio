@@ -15,6 +15,7 @@ import {
 
 import Link from "next/link";
 import Image from "next/image";
+import WorkSliderBtns from "@/components/WorkSliderBtns";
 
 const projects = [
   {
@@ -54,10 +55,20 @@ const projects = [
 
 const Work = () => {
   const [project, setProject] = useState(projects[0]);
+
+  const handleSlideChange = (swiper) => {
+    // get current slide index
+    const currentIndex = swiper.activeIndex;
+    setProject(projects[currentIndex]);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      animate={{
+        opacity: 1,
+        transition: { delay: 2.4, duration: 0.4, ease: "easeIn" },
+      }}
       className="min-h-[80vh] flex flex-col justify-center py-12 xl:px-0"
     >
       <div className="container mx-auto">
@@ -94,7 +105,7 @@ const Work = () => {
                   <TooltipProvider delayDuration={100}>
                     <Tooltip>
                       <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
-                        <BsArrowUpRight className="text-white text-3xl" />
+                        <BsArrowUpRight className="text-white text-3xl group-hover:text-accent" />
                       </TooltipTrigger>
                       <TooltipContent>
                         <p>Live Project</p>
@@ -107,7 +118,7 @@ const Work = () => {
                   <TooltipProvider delayDuration={100}>
                     <Tooltip>
                       <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
-                        <BsGithub className="text-white text-3xl" />
+                        <BsGithub className="text-white text-3xl group-hover:text-accent" />
                       </TooltipTrigger>
                       <TooltipContent>
                         <p>Github Repository</p>
@@ -118,7 +129,36 @@ const Work = () => {
               </div>
             </div>
           </div>
-          <div className="w-full xl:w-[50%]">slider</div>
+          <div className="w-full xl:w-[50%]">
+            <Swiper
+              spaceBetween={30}
+              slidesPerView={1}
+              className="xl:h-[520px] mb-12"
+              onSlideChange={handleSlideChange}
+            >
+              {projects.map((project, index) => {
+                return (
+                  <SwiperSlide key={index} className="w-full">
+                    <div className="h-[460px] relative group flex justify-center items-center bg-pink-50/20">
+                      {/* overlay */}
+                      <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10"></div>
+                      {/* image */}
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={project.image}
+                          fill
+                          className="object-cover rounded-md"
+                          alt={project.title}
+                        />
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
+              {/* slider buttons */}
+              <WorkSliderBtns />
+            </Swiper>
+          </div>
         </div>
       </div>
     </motion.div>
