@@ -8,9 +8,10 @@ Built using Next.js 14, TailwindCSS, and Framer Motion, this portfolio highlight
 
 ## Technologies
 
-Next.js 14: A powerful framework for building server-rendered React applications with ease.
-TailwindCSS: A utility-first CSS framework for rapid and efficient styling.
-Framer Motion: A library for adding sophisticated animations and interactions to React components.
+- **Next.js 14:** A powerful framework for building server-rendered React applications with ease.
+- **TailwindCSS:** A utility-first CSS framework for rapid and efficient styling.
+- **Framer Motion:** A library for adding sophisticated animations and interactions to React
+  components.
 
 ## Preview
 
